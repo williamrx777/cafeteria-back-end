@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.cafeteria.dtos.ProdutoDTO;
+import com.cafeteria.excessao.ProdutoNotFoundException;
 import com.cafeteria.mapper.ProdutoMapper;
 import com.cafeteria.repositories.ProdutoRepository;
 import com.cafeteria.services.ProdutoService;
@@ -32,7 +33,7 @@ public class ProdutoServiceImpl implements ProdutoService{
 
 	@Override
 	public ProdutoDTO pegaUm(Long id) {
-		return produtoRepository.findById(id).map(produtoMapper::toDTO).orElseThrow();
+		return produtoRepository.findById(id).map(produtoMapper::toDTO).orElseThrow(() -> new ProdutoNotFoundException(id));
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public class ProdutoServiceImpl implements ProdutoService{
 					produto.setPreco(produtoDTO.preco());
 					produto.setImagem(produtoDTO.imagem());
 					return produtoMapper.toDTO(produtoRepository.save(produto));
-				}).orElseThrow();
+				}).orElseThrow(() -> new ProdutoNotFoundException(id));
 	}
 
 	@Override
