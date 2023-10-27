@@ -44,7 +44,7 @@ public class ProdutoController {
 	public ResponseEntity<ProdutoDTO> pegaUm(@PathVariable Long id ) {
 		return ResponseEntity.ok(produtoService.pegaUm(id));
 	}
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<ProdutoDTO> atualizar(@PathVariable Long id ,@RequestBody ProdutoDTO produtoDTO) {
 		return ResponseEntity.ok(produtoService.atualizar(id, produtoDTO));
 	}
