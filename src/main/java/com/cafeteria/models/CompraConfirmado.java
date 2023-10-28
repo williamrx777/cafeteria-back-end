@@ -3,11 +3,7 @@ package com.cafeteria.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "comprasconfirmados")
@@ -17,6 +13,7 @@ public class CompraConfirmado {
 	private Long id;
 	private String nome;
 	private BigDecimal preco;
+	@Column(columnDefinition = "TEXT")
 	private String imagem;
 
     private LocalDate data;
