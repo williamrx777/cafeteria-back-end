@@ -40,6 +40,7 @@ public class ProdutoServiceImpl implements ProdutoService{
 	public ProdutoDTO atualizar(Long id, ProdutoDTO produtoDTO) {
 		return produtoRepository.findById(id)
 				.map(produto -> {
+					produto.setId(produtoDTO.id());
 					produto.setNome(produtoDTO.nome());
 					produto.setPreco(produtoDTO.preco());
 					produto.setImagem(produtoDTO.imagem());
